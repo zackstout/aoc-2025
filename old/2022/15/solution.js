@@ -17,7 +17,7 @@ const MAX_LIMIT = 4_000_000;
 
 function manhatten(a, b) {
   const res = Math.abs(a[0] - b[0]) + Math.abs(a[1] - b[1]);
-  if (a[0] == 2 && a[1] == 18) console.log(a, b, res);
+  // if (a[0] == 2 && a[1] == 18) console.log(a, b, res);
   return res;
 }
 
@@ -87,6 +87,7 @@ const solution = (isPartTwo = false) => {
   // Ok... finally got there hahaha
   // return 2936793 * MAX_LIMIT + 3442119;
 
+  // MAKE SURE TO CAPTURE NEGATIVE NUMBERS, WHOOPS
   const lines = input
     .split("\n")
     .map((line) =>

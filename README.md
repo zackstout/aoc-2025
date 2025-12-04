@@ -19,3 +19,11 @@ We are given a set of ranges of numbers, and asked to sum up all those candidate
 Naive brute force: check every candidate number in each range.
 
 A more efficient (and complex) approach would probably try to enumerate all possible numbers that are repeated sequences of digits, within a given range.
+
+## Day 3
+
+A nice recursive problem. Find the largest n-digit number by selecting digits (in order) from a long string. Clear recursive structure that we could exploit.
+
+## Day 4
+
+Hoo hoo, our first grid simulation. Was a bit rusty, ran into issue with trying to set the character in a string, and some confusion about whether neighbors were just coordinates or held the value as well. Ultimately pretty straightforward.

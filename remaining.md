@@ -254,7 +254,11 @@ Simulation.
 
 ### --- Day 19: A Series of Tubes ---
 
+Part two: ⭐
+
 Walk-along-path simulation. Maddening that we have never gotten this one.
+
+Ahh finally got there. Not exactly sure what issue was. Maybe not checking for space-characters?
 
 ### --- Day 23: Coprocessor Conflagration ---
 
@@ -292,7 +296,7 @@ Find longest path that reaches vault (using MD5 on path to get next possible ste
 
 Huh, this one was pleasantly simple!
 
-Once we recovered part one solution (BFS), just... don't return when you find a solution? Instead, just check it against the max currently found length. We don't have to do any extra checking to stop the simulation -- it stops on its own when all the doors end up closed in each node. Works for me!
+Once we recovered part one solution (BFS), just... don't return when you find a solution? Instead, just check it against the max currently found length. We don't have to do any extra checking to stop the simulation, or check for loops -- it stops on its own when all the doors end up closed in each node, and there aren't any loops because the lock configuration changes each time you visit it. Works for me!
 
 ### --- Day 19: An Elephant Named Joseph ---
 
@@ -302,6 +306,8 @@ Circular gift-stealing game simulation.
 
 Shuffle data around a grid to available spaces: fewest number of steps.
 
+It seems like the trick is going to be that we can treat the empty space as a single node that we are moving around; then it reduces to a straightforward pathfinding BFS in a grid maze.
+
 ### --- Day 23: Safe Cracking ---
 
 Intcode-style computer simulation.
@@ -309,8 +315,9 @@ Intcode-style computer simulation.
 ### --- Day 24: Air Duct Spelunking ---
 
 Part one: ⭐
+Part two: ⭐
 
-(Ran in about 8s.)
+(Each ran in about 8s.)
 
 Fewest number of steps to reach every target square at least once.
 

@@ -50,6 +50,7 @@ const solution = () => {
     }
     // console.log("char", char, pos.x, pos.y);
 
+    // for Part One
     if (char.match(/[A-Z]/)) {
       console.log("GOT LETTER", char);
     }
@@ -57,11 +58,11 @@ const solution = () => {
     let newPos = pos;
 
     if (char === "+") {
-      const d = turn();
-      newPos = d.pos;
-      dir = d.dir;
+      const data = turn();
+      newPos = data.pos;
+      dir = data.dir;
     } else {
-      newPos = { x: pos.x + DIRS[dir][0], y: pos.y + DIRS[dir][1] };
+      newPos = move(pos, dir);
     }
 
     pos = newPos;

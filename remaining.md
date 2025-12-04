@@ -242,7 +242,9 @@ Feels like it will be similar to "Beacon Exclusion Zone"..
 
 ### --- Day 24: Immune System Simulator 20XX ---
 
-Immune system battle simulation.
+Part one: ⭐
+
+Immune system battle simulation. Woooo fun to get there for part one, just follow the instructions... Not sure what is tripping us up in part two.
 
 ---
 

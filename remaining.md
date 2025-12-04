@@ -230,7 +230,9 @@ Force an op-code program to halt.
 
 Part one: ⭐
 
-Ok part one was not too bad... terrain-based cave. But part two is path-length minimization with constraints (tool-swapping).
+Ok part one was not too bad... terrain-based cave. Really just following the instructions for how to generate the grid.
+
+But part two is path-length minimization with constraints (tool-swapping).
 
 ### --- Day 23: Experimental Emergency Teleportation ---
 
@@ -288,7 +290,9 @@ Part two: ⭐
 
 Find longest path that reaches vault (using MD5 on path to get next possible steps).
 
-Huh, this one was pleasantly simple. Once we recovered part one solution (BFS), just... don't return when you find a solution? Works for me!
+Huh, this one was pleasantly simple!
+
+Once we recovered part one solution (BFS), just... don't return when you find a solution? Instead, just check it against the max currently found length. We don't have to do any extra checking to stop the simulation -- it stops on its own when all the doors end up closed in each node. Works for me!
 
 ### --- Day 19: An Elephant Named Joseph ---
 
@@ -304,7 +308,23 @@ Intcode-style computer simulation.
 
 ### --- Day 24: Air Duct Spelunking ---
 
+Part one: ⭐
+
+(Ran in about 8s.)
+
 Fewest number of steps to reach every target square at least once.
+
+Hm, so it seems like we could first use a number of BFS calls, to determine distance between any given pair of points.
+
+And that would produce a graph, and it seems like we would need to find a minimal spanning tree of that graph..
+
+Ah, not quite. Since we need to traverse it, it's actually closer to Traveling Salesman or Hamiltonian Path...
+
+Which fortunately we can brute force here because the number of nodes is so small!
+
+Now, in part two, we just need to return to the start... shouldn't that just be a matter of adding in a single distance to each path..?
+
+Yes! Beautiful!
 
 ---
 

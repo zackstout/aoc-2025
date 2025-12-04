@@ -1,3 +1,5 @@
+const { input } = require("./input.js");
+
 const solution = () => {};
 
 console.time("solve");

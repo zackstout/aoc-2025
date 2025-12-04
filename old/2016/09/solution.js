@@ -19,11 +19,11 @@ const solution = () => {
       .slice(idx + 1, endIdx)
       .split("x")
       .map(Number);
-    const target = str.slice(endIdx + 1, endIdx + 1 + n1);
+    // const target = str.slice(endIdx + 1, endIdx + 1 + n1);
 
-    console.log(n1, n2, target);
+    // console.log(n1, n2, target);
 
-    const endLength = str.slice(endIdx + n1 + 1).length;
+    // const endLength = str.slice(endIdx + n1 + 1).length;
 
     // OOOOH JUST DON'T DO THIS??? AMAZING!!!
     // if (!target.includes("(")) {

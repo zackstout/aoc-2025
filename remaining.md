@@ -268,7 +268,7 @@ Part two: ⭐
 
 Recursive string parsing "decompression".
 
-Yessss we got there.
+Yessss we got there. Yeah honestly pretty dead simple when you look at it. Recursion is hard.
 
 ### --- Day 11: Radioisotope Thermoelectric Generators ---
 
@@ -276,11 +276,19 @@ Microchips and elevators: minimize number of steps.
 
 ### --- Day 14: One-Time Pad ---
 
+Part two: ⭐
+
 Salt and MD5 iterated many times.
+
+Woof, needed some GPT action and still takes 2 minutes to run. A few subtle bugs were crushing me (double counting, and counting in order of when validated, rather than original index).
 
 ### --- Day 17: Two Steps Forward ---
 
+Part two: ⭐
+
 Find longest path that reaches vault (using MD5 on path to get next possible steps).
+
+Huh, this one was pleasantly simple. Once we recovered part one solution (BFS), just... don't return when you find a solution? Works for me!
 
 ### --- Day 19: An Elephant Named Joseph ---
 

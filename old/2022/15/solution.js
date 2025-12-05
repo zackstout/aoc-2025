@@ -1,3 +1,7 @@
+const {
+  insertAndMergeIntervals,
+} = require("../../../algorithms/mergeIntervals.js");
+
 const test = `Sensor at x=2, y=18: closest beacon is at x=-2, y=15
 Sensor at x=9, y=16: closest beacon is at x=10, y=16
 Sensor at x=13, y=2: closest beacon is at x=15, y=3
@@ -19,38 +23,6 @@ function manhatten(a, b) {
   const res = Math.abs(a[0] - b[0]) + Math.abs(a[1] - b[1]);
   // if (a[0] == 2 && a[1] == 18) console.log(a, b, res);
   return res;
-}
-
-function insertAndMergeIntervals(intervals, newInterval) {
-  if (!intervals || intervals.length === 0) return [newInterval];
-
-  // Step 1: Insert new interval into list
-  intervals.push(newInterval);
-
-  // Step 2: Sort intervals by start time
-  intervals.sort((a, b) => a[0] - b[0]);
-
-  const merged = [];
-  let [currentStart, currentEnd] = intervals[0];
-
-  // Step 3: Merge overlaps
-  for (let i = 1; i < intervals.length; i++) {
-    const [start, end] = intervals[i];
-
-    if (start <= currentEnd) {
-      // Overlap: extend the current interval
-      currentEnd = Math.max(currentEnd, end);
-    } else {
-      // No overlap: push current and reset
-      merged.push([currentStart, currentEnd]);
-      [currentStart, currentEnd] = [start, end];
-    }
-  }
-
-  // Push the last interval
-  merged.push([currentStart, currentEnd]);
-
-  return merged;
 }
 
 function getIntervalsSize(intervals) {

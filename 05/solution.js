@@ -18,6 +18,7 @@ const solution = (isPartTwo = false) => {
   ranges = ranges.map((r) => r.split("-").map(Number));
 
   if (!isPartTwo) {
+    // Count how many ingredients are included in some range
     return ings.filter((x) => {
       return ranges.some((range) => {
         const [start, end] = range;
@@ -27,6 +28,7 @@ const solution = (isPartTwo = false) => {
     }).length;
   }
 
+  // Find the total size of the (merged) intervals
   const merged = merge(ranges);
   return merged.reduce((acc, range) => acc + range[1] - range[0] + 1, 0);
 };

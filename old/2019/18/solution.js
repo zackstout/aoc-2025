@@ -83,7 +83,7 @@ const solution = () => {
 
   const visited = new Set();
 
-  //   let minAmt = Infinity;
+  let minAmt = Infinity;
 
   while (queue.length) {
     const { position, collected, steps } = queue.shift();
@@ -92,13 +92,15 @@ const solution = () => {
     // That part is guaranteed for us when each step costs 1..... but that isn't so here....
 
     // Ooooh yes this makes a huge difference, huzzah!
-    const key = `${position.x},${position.y},${[...collected].sort().join("")}`;
+    const key = `${position.x},${position.y},${[...collected]
+      .sort()
+      .join("")},${steps}`;
     if (visited.has(key)) continue;
     visited.add(key);
 
     if (collected.size === numKeys) {
-      return steps;
-      //   minAmt = Math.min(minAmt, steps);
+      // return steps;
+      minAmt = Math.min(minAmt, steps);
     }
 
     console.log("Processing", collected.size, steps);

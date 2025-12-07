@@ -27,3 +27,11 @@ A nice recursive problem. Find the largest n-digit number by selecting digits (i
 ## Day 4
 
 Hoo hoo, our first grid simulation. Was a bit rusty, ran into issue with trying to set the character in a string, and some confusion about whether neighbors were just coordinates or held the value as well. Ultimately pretty straightforward.
+
+## Day 5
+
+Intervals problem. Quick application of `mergeIntervals`.
+
+## Day 6
+
+A parsing problem! Interpret lines as columns of digits (so whitespace matters!). Better than mollusk math of the past that's for sure..

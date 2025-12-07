@@ -5,22 +5,13 @@ const test = `123 328  51 64
   6 98  215 314
 *   +   *   +  `;
 
-const solution = () => {
+const partOne = () => {
   const lines = input
     .split("\n")
     .map((line) => line.trim())
     .map((line) => line.split(/\s/).filter((x) => x));
 
   let total = 0;
-
-  function leftPad(str, val, target) {
-    let s = str;
-
-    while (s.length < target) {
-      s = val + s;
-    }
-    return s;
-  }
 
   for (let i = 0; i < lines[0].length; i++) {
     const arr = lines.map((line) => line[i]);
@@ -29,26 +20,11 @@ const solution = () => {
     let res = 0;
     let nums = arr.slice(0, arr.length - 1);
 
-    if (!isPartTwo) {
-      nums = nums.map(Number);
-      res = nums.reduce(
-        (acc, val) => (op === "+" ? acc + val : acc * val),
-        op === "+" ? 0 : 1
-      );
-    } else {
-      // Vertical columns of numbers..
-      const maxLength = nums.sort((a, b) => b.length - a.length)[0].length;
-      console.log(maxLength);
-      //   nums = nums.map((n) => leftPad(n, "0", maxLength));
-      const realNums = [];
-      //   for (let i = 0; i < maxLength; i++) {
-      //     const n = nums.reduce(
-      //       (acc, val) => acc + (val[i] === "0" ? "" : val[i]),
-      //       ""
-      //     );
-      //     console.log(n);
-      //   }
-    }
+    nums = nums.map(Number);
+    res = nums.reduce(
+      (acc, val) => (op === "+" ? acc + val : acc * val),
+      op === "+" ? 0 : 1
+    );
 
     total += res;
   }
@@ -64,7 +40,9 @@ const partTwo = () => {
     .map((line) => line.split(/\s/).filter((x) => x));
 
   const maxLengths = [];
-  for (let i = 0; i < lines[0].length; i++) {
+  const numColumns = lines[0].length;
+
+  for (let i = 0; i < numColumns; i++) {
     const arr = lines.map((line) => line[i]);
     const nums = arr.slice(0, arr.length - 1);
     const maxLength = nums.sort((a, b) => b.length - a.length)[0].length;
@@ -72,14 +50,11 @@ const partTwo = () => {
   }
   const columns = [];
 
-  const numColumns = lines[0].length;
-
-  //   let idx = 0;
-
   let idx = 0;
 
-  for (let i = 0; i < lines[0].length; i++) {
-    // let idx = 0;
+  // Grab the proper slice from rawline and then advance index by proper amount
+  // Because "  23" has different meaning than " 23 " or "23  ".
+  for (let i = 0; i < numColumns; i++) {
     let arr = rawlines.map((line) => line.slice(idx, idx + maxLengths[i]));
     idx += maxLengths[i] + 1;
     // console.log("arr", arr);

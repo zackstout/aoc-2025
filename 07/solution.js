@@ -19,7 +19,7 @@ const ex = `.......S.......
 `;
 
 const partOne = () => {
-  const lines = test.split("\n").filter((x) => x);
+  const lines = ex.split("\n").filter((x) => x);
 
   let timesSplit = 0;
   const maxX = lines[0].length;
@@ -43,7 +43,7 @@ const partOne = () => {
     }
   }
 
-  dfs({ x: lines[0].indexOf("S"), y: 0 }, 1);
+  dfs({ x: lines[0].indexOf("S"), y: 0 });
 
   return timesSplit;
 };
@@ -63,13 +63,16 @@ const partTwo = () => {
     const newLine = [...activeLine];
     const nextLine = lines[idx + 1];
 
-    console.log(newLine, nextLine);
+    // console.log(newLine, nextLine);
     for (let i = 0; i < maxX; i++) {
       if (nextLine[i] === "^") {
         if (i + 1 < maxX) newLine[i + 1] += newLine[i];
         if (i - 1 >= 0) newLine[i - 1] += newLine[i];
 
         // Do we clear it??
+        // Apparently!
+        // I was worried about case where more-left previous would cause it to then fill higher...
+        // I guess it was a ghost
 
         newLine[i] = 0;
       }
@@ -80,11 +83,37 @@ const partTwo = () => {
     idx++;
   }
   return activeLine.reduce((acc, val) => acc + val, 0);
-
-  dfs({ x: lines[0].indexOf("S"), y: 0 }, 1);
-
-  return timesSplit;
 };
+
+// const partTwoDfs = () => {
+//   const lines = input.split("\n").filter((x) => x);
+
+//   const maxX = lines[0].length;
+//   const maxY = lines.length;
+
+//   let count = 0;
+
+//   function dfs(pos, steps) {
+//     const { x, y } = pos;
+//     if (x < 0 || y < 0 || x >= maxX || y >= maxY) return;
+//     if (steps === lines.length) {
+//       count++;
+//       return;
+//     }
+//     const char = lines[y][x];
+//     if (char === "^") {
+//       dfs({ x: pos.x + 1, y: pos.y }, steps + 1);
+//       dfs({ x: pos.x - 1, y: pos.y }, steps + 1);
+//     } else {
+//       dfs({ x: pos.x, y: pos.y + 1 }, steps + 1);
+//     }
+//   }
+
+//   dfs({ x: lines[0].indexOf("S"), y: 0 }, 0);
+
+//   return count;
+//   return timesSplit;
+// };
 
 console.time("solve");
 console.log(partTwo());

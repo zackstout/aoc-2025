@@ -31,13 +31,9 @@ const euclideanDist = (p1, p2) => {
   );
 };
 
-const solution = () => {
+const partOne = () => {
   const ps = input.split("\n").map((line) => line.split(",").map(Number));
-  //   const atlas = {};
-  //   ps.forEach((p, i) => {
-  //     atlas[i] = p.join(",");
-  //   });
-  //   const distances = {};
+
   const distances = [];
   for (let i = 0; i < ps.length - 1; i++) {
     for (let j = i + 1; j < ps.length; j++) {
@@ -47,7 +43,6 @@ const solution = () => {
   }
   distances.sort((a, b) => a.dist - b.dist);
 
-  //   const cycles = [];
   const NUM_SHORTEST_CONNECTIONS = 1000;
   const uf = new UnionFind(ps.length);
 
@@ -60,14 +55,13 @@ const solution = () => {
 
     if (uf.find(i) === uf.find(j)) {
       // These nodes already belong to the same cycle; just skip them
-      console.log("AWOOGA", i, j);
+      //   console.log("AWOOGA", i, j);
     } else {
       // We actually count a new union
       times++;
       uf.union(i, j);
     }
 
-    // times++;
     idx++;
   }
 
@@ -143,53 +137,9 @@ const partTwo = () => {
     idx++;
   }
 
-  return prev.map((i) => ps[i][0]);
+  return prev.map((i) => ps[i][0]).reduce((prod, val) => prod * val, 1);
 };
 
 console.time("solve");
 console.log(partTwo());
 console.timeEnd("solve");
-
-/**
- * Aha! This is minimal spanning tree, I'm pretty sure!
- * Ah maybe not..
- * Yeah they have explicit instructions on how to connect them..
- *
- */
-
-// 14950 is too low....
-
-// Ooooh I think it's saying, if you run into one that does nothing, skip it, and keep going until you get to 10. Got it....
-
-/**
- * Huh i wonder if we need to do union find a particular order...
- * like if we find that [5,8] are connected, and then we find [3,5], we need to also set 8 to belong to 3... are we doing so?
- * Oooh we have to run find every time? But we are...
- */
-
-// 12696 is too low... which we got from changing spanningTree.... huh...
-
-// Ahhh of course we have to merge them.... Ugh lol
-
-//   for (let idx = 0; idx < NUM_SHORTEST_CONNECTIONS; idx++) {
-//     const { i, j, dist } = distances[idx];
-//     console.log(i, j);
-//     let added = false;
-//     for (const cycle of cycles) {
-//       if (cycle.has(i) || cycle.has(j)) {
-//         cycle.add(i);
-//         cycle.add(j);
-//         // break;
-//         added = true;
-//       }
-//     }
-//     if (!added) {
-//       const c = new Set();
-//       c.add(i);
-//       c.add(j);
-//       cycles.push(c);
-//     }
-//   }
-
-//   return cycles;
-//   return cycles.map((c) => c.size).sort((a, b) => b - a);

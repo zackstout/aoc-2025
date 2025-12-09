@@ -6,6 +6,121 @@ Let's document what we learn while tackling the last 100-odd problems.
 
 I'll leave out the Day 25's, since they tend to be checks for whether you have all previous stars.
 
+### 2024
+
+- [ ] 17.2
+- [ ] 21.1
+- [ ] 21.2
+- [ ] 24.2
+
+### 2023
+
+- [ ] 10.2
+- [ ] 12.2
+- [ ] 17.1
+- [ ] 17.2
+- [ ] 18.2
+- [ ] 19.2
+- [ ] 20.2
+- [ ] 21.2
+- [ ] 22.1
+- [ ] 22.2
+- [ ] 23.2
+- [ ] 24.2
+
+### 2022
+
+- [x] 15.2
+- [ ] 16.2
+- [ ] 17.2
+- [ ] 19.1
+- [ ] 19.2
+- [ ] 22.2
+- [ ] 24.2
+
+### 2021
+
+- [ ] 16.1
+- [ ] 16.2
+- [ ] 18.1
+- [ ] 18.2
+- [ ] 22.2
+- [ ] 23.1
+- [ ] 23.2
+- [ ] 24.1
+- [ ] 24.2
+
+### 2020
+
+- [ ] 18.2
+- [ ] 19.2
+- [ ] 20.2
+- [ ] 22.2
+- [ ] 23.2
+- [ ] 24.2
+
+### 2019
+
+- [ ] 14.1
+- [ ] 14.2
+- [ ] 16.2
+- [ ] 17.2
+- [ ] 18.1
+- [ ] 18.2
+- [ ] 19.2
+- [ ] 20.2
+- [ ] 21.1
+- [ ] 21.2
+- [ ] 22.2
+- [ ] 23.1
+- [ ] 23.2
+- [ ] 24.2
+
+### 2018
+
+- [ ] 9.2
+- [ ] 12.2
+- [ ] 15.1
+- [ ] 15.2
+- [ ] 17.1
+- [ ] 17.2
+- [ ] 19.2
+- [ ] 20.1
+- [ ] 20.2
+- [ ] 21.1
+- [ ] 21.2
+- [x] 22.1
+- [ ] 22.2
+- [x] 24.1
+- [ ] 24.2
+
+### 2017
+
+- [ ] 15.2
+- [x] 19.2
+- [ ] 23.2
+
+### 2016
+
+- [x] 9.2
+- [ ] 11.1
+- [ ] 11.2
+- [x] 14.2
+- [x] 17.2
+- [ ] 19.2
+- [ ] 22.2
+- [ ] 23.1
+- [ ] 23.2
+- [x] 24.1
+- [x] 24.2
+
+### 2015
+
+- [ ] 8.1
+- [ ] 8.2
+- [ ] 19.2
+- [ ] 22.2
+
 ---
 
 ## 2024
@@ -27,6 +142,8 @@ Find the pairs of swapped gates which, when reversed, causes the complex signal 
 ## 2023
 
 ### --- Day 10: Pipe Maze ---
+
+Determine how many tiles are inside a loop defined by a pipe's path. I remember this needing something like Pick's theorem?
 
 ### --- Day 12: Hot Springs ---
 
@@ -54,9 +171,15 @@ How many cells can be reached after N steps (where N is cranked up to a huge num
 
 ### --- Day 22: Sand Slabs ---
 
+A kind of advanced tetris.
+
 ### --- Day 23: A Long Walk ---
 
+Find longest path you can take on path with icy arrows (like that Pokemon level...).
+
 ### --- Day 24: Never Tell Me The Odds ---
+
+Long-term collision detection..
 
 ---
 

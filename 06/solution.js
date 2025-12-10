@@ -57,16 +57,12 @@ const partTwo = () => {
   for (let i = 0; i < numColumns; i++) {
     let arr = rawlines.map((line) => line.slice(idx, idx + maxLengths[i]));
     idx += maxLengths[i] + 1;
-    // console.log("arr", arr);
-    // arr = arr.slice(0, arr.length - 1);
-    // arr = arr.map((x) => x.replace(/\s/g, "0"));
     columns.push(arr);
   }
 
   return columns.reduce((acc, val) => {
     // Perform the operation
     const op = val.at(-1).trim();
-    // console.log("op", op);
     const nums = val.slice(0, -1);
     const maxLength = nums[0].length;
     const realNums = [];
@@ -76,11 +72,8 @@ const partTwo = () => {
         (acc, val) => acc + (val[i] === "0" ? "" : val[i]),
         ""
       );
-      //   console.log(n);
       realNums.push(n);
     }
-
-    // console.log("real nums", realNums);
 
     const result = realNums
       .map(Number)
@@ -88,8 +81,6 @@ const partTwo = () => {
         (acc, val) => (op === "+" ? acc + val : acc * val),
         op === "+" ? 0 : 1
       );
-
-    // console.log("result", result, op, op === "+", realNums.map(Number));
 
     return acc + result;
   }, 0);

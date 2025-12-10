@@ -82,4 +82,22 @@ A little Union-Find action: keeping track of cycles in a graph as new edges are 
 
 - Great to get to use the `UnionFind` class and understand how the `parents` array actually works.
 
-- 🔭 Could likely be improved by using a `MinHeap` instead of sorting the entire array of pairs at the outsetl
+- 🔭 Could likely be improved by using a `MinHeap` instead of sorting the entire array of pairs at the outset
+
+- Seems like this is essentially just [Kruskal's algorithm](https://en.wikipedia.org/wiki/Kruskal%27s_algorithm) for finding minimal spanning tree, right?
+
+## --- Day 9: Movie Theater ---
+
+First one where part 2 trips us up. Seems we need coordinate compression of some kind.
+
+**Part one**: find the largest rectangle that can be formed from pairs of a list of coordinates.
+
+**Part two**: find the largest rectangle that fits entirely within the polygon determined by our coordinates/points.
+
+## --- Day 10: Factory ---
+
+First part is pretty straightforward BFS. Another tricky part 2. Seems we may want an [integer linear solver](https://en.wikipedia.org/wiki/Integer_programming) of some kind.
+
+**Part one**: find the minimum number of button presses required to reach a target state (such as "..#."), where each press toggles certain lights.
+
+**Part two**: find the minimum number of button presses required to reach a target state (such as "3,5,4,7"), where each press increments certain registers.

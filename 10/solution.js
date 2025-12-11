@@ -1,5 +1,7 @@
 const { input } = require("./input.js");
 const { bfs } = require("../algorithms/bfs.js");
+const GLPK = require("glpk.js");
+const glpk = GLPK();
 
 const ex = `[.##.] (3) (1,3) (2) (2,3) (0,2) (0,1) {3,5,4,7}
 [...#.] (0,2,3,4) (2,3) (0,4) (0,1,2) (1,2,3,4) {7,5,12,7,2}
@@ -77,6 +79,46 @@ const partTwo = () => {
       line.slice(last + 2, -1),
     ];
   });
+
+  const res = glpk.solve({
+    objective: {
+      direction: glpk.GLP_MIN,
+      vars: [
+        { name: "x1" },
+        { name: "x2" },
+        { name: "x3" },
+        { name: "x4" },
+        { name: "x5" },
+        { name: "x6" },
+      ],
+    },
+    subjectTo: [
+      {
+        vars: [
+          {
+            name: "x5",
+          },
+          {
+            name: "x6",
+          },
+        ],
+        bnds: { type: glpk.GLP_UP, ub: 3.0 },
+      },
+      {
+        vars: [
+          {
+            name: "x5",
+          },
+          {
+            name: "x6",
+          },
+        ],
+        bnds: { type: glpk.GLP_LO, lb: 3.0 },
+      },
+    ],
+  });
+
+  return res;
 
   //   return lines[0];
 

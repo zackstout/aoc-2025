@@ -1,4 +1,5 @@
 const { input } = require("./input.js");
+const { topologicalSort } = require("../algorithms/topologicalSort.js");
 
 const ex = `aaa: you hhh
 you: bbb ccc
@@ -24,23 +25,35 @@ const partOne = (begin = "you", goal = "out", data = "") => {
 
   //   return atlas;
 
-  let total = 0;
+  //   let total = 0;
 
-  function dfs(pos, steps) {
+  function dfs(pos, steps, memo = {}) {
+    // if (memo.has(pos)) return;
+    // memo.add(pos);
+
+    if (memo[pos]) return memo[pos];
+
     if (pos === goal) {
-      total++;
-      return;
+      //   total++;
+      //   console.log(total);
+      return 1;
     }
     // console.log(pos, atlas[pos]);
     if (!atlas[pos]) return;
+
+    let sum = 0;
+
     for (const n of atlas[pos]) {
-      dfs(n, steps + 1);
+      sum += dfs(n, steps + 1, memo);
     }
+
+    memo[pos] = sum;
+    return sum;
   }
 
-  dfs(begin, 0);
+  const sum = dfs(begin, 0);
 
-  return total;
+  return sum;
 };
 
 const ex2 = `svr: aaa bbb
@@ -58,54 +71,48 @@ ggg: out
 hhh: out`;
 
 const partTwo = () => {
-  //   const atlas = {};
-  //   const lines = input
-  //     .split("\n")
-  //     .map((line) => line.split(": "))
-  //     .map(([start, end]) => [start, end.split(" ")]);
+  const graph = {};
+  const lines = input
+    .split("\n")
+    .map((line) => line.split(": "))
+    .map(([start, end]) => [start, end.split(" ")]);
 
-  //   lines.forEach(([start, end]) => {
-  //     atlas[start] = end;
-  //   });
+  lines.forEach(([start, end]) => {
+    graph[start] = end;
+  });
 
-  //   let total = 0;
+  graph["out"] = [];
 
-  //   //   const visited = new Set();
+  // return graph;
 
-  //   function dfs(pos, path, steps) {
-  //     if (path.includes(pos)) return;
-  //     const newPath = path ? `${path},${pos}` : pos;
-  //     // if (visited.has(newPath)) return;
-  //     // visited.add(newPath);
-  //     // console.log(steps);
-  //     if (pos === "out") {
-  //       const p = new Set(newPath.split(","));
-  //       if (p.has("dac") && p.has("fft")) total++;
-  //       //   console.log(newPath);
-  //       return;
-  //     }
-  //     for (const n of atlas[pos]) {
-  //       // Very important to spread out path here
-  //       dfs(n, newPath, steps + 1);
-  //     }
-  //   }
+  //   for (const n in graph) console.log(graph[n]);
 
-  //   dfs("svr", "", 0);
+  // Takes about 20ms on real input
+  const sorted = topologicalSort(graph);
 
-  //   return total;
+  // Now, since they are sorted, we can use DP and ensure it will work
+  // Wow this is blazingly fast
+  function countPaths(start, end) {
+    const ways = { ...graph };
+    Object.keys(ways).forEach((key) => (ways[key] = 0));
+    ways[start] = 1;
+    for (const node of sorted) {
+      for (const neighbor of graph[node]) {
+        ways[neighbor] += ways[node];
+      }
+    }
+    return ways[end];
+  }
 
-  const x1 = partOne("svr", "dac", input);
-  console.log(x1);
-  const x2 = partOne("dac", "fft", input);
-  console.log(x2);
-  const x3 = partOne("fft", "out", input);
-  console.log(x3);
+  const x1 = countPaths("svr", "fft");
+  const x2 = countPaths("fft", "dac");
+  const x3 = countPaths("dac", "out");
 
-  const y1 = partOne("svr", "fft", input);
-  const y2 = partOne("fft", "dac", input);
-  const y3 = partOne("dac", "out", input);
+  const y1 = countPaths("svr", "dac");
+  const y2 = countPaths("dac", "fft");
+  const y3 = countPaths("fft", "out");
 
-  return x1 * x2 * x3 + y1 * y2 * y3;
+  return [Math.max(x1 * x2 * x3, y1 * y2 * y3), x1, x2, x3, y1, y2, y3];
 };
 
 console.time("solve");

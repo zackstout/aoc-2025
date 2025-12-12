@@ -1,5 +1,5 @@
 const { input } = require("./input.js");
-const { UnionFind } = require("../algorithms/spanningTree.js");
+const { UnionFind } = require("../algorithms/unionFind.js");
 
 const ex = `162,817,812
 57,618,57

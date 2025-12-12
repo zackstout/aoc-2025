@@ -12,6 +12,7 @@ I'll leave out the Day 25's, since they tend to be checks for whether you have a
 - [ ] 21.1
 - [ ] 21.2
 - [ ] 24.2
+- [ ] 25.2
 
 ### 2023
 
@@ -27,6 +28,8 @@ I'll leave out the Day 25's, since they tend to be checks for whether you have a
 - [ ] 22.2
 - [ ] 23.2
 - [ ] 24.2
+- [ ] 25.1
+- [ ] 25.2
 
 ### 2022
 
@@ -37,6 +40,7 @@ I'll leave out the Day 25's, since they tend to be checks for whether you have a
 - [ ] 19.2
 - [ ] 22.2
 - [ ] 24.2
+- [ ] 25.2
 
 ### 2021
 
@@ -49,6 +53,8 @@ I'll leave out the Day 25's, since they tend to be checks for whether you have a
 - [ ] 23.2
 - [ ] 24.1
 - [ ] 24.2
+- [ ] 25.1
+- [ ] 25.2
 
 ### 2020
 
@@ -58,6 +64,8 @@ I'll leave out the Day 25's, since they tend to be checks for whether you have a
 - [ ] 22.2
 - [ ] 23.2
 - [ ] 24.2
+- [ ] 25.1
+- [ ] 25.2
 
 ### 2019
 
@@ -75,6 +83,8 @@ I'll leave out the Day 25's, since they tend to be checks for whether you have a
 - [ ] 23.1
 - [ ] 23.2
 - [ ] 24.2
+- [ ] 25.1
+- [ ] 25.2
 
 ### 2018
 
@@ -91,14 +101,18 @@ I'll leave out the Day 25's, since they tend to be checks for whether you have a
 - [ ] 21.2
 - [x] 22.1
 - [ ] 22.2
+- [ ] 23.2
 - [x] 24.1
 - [ ] 24.2
+- [ ] 25.1
+- [ ] 25.2
 
 ### 2017
 
 - [ ] 15.2
 - [x] 19.2
 - [ ] 23.2
+- [ ] 25.2
 
 ### 2016
 
@@ -113,6 +127,8 @@ I'll leave out the Day 25's, since they tend to be checks for whether you have a
 - [ ] 23.2
 - [x] 24.1
 - [x] 24.2
+- [ ] 25.1
+- [ ] 25.2
 
 ### 2015
 
@@ -120,6 +136,8 @@ I'll leave out the Day 25's, since they tend to be checks for whether you have a
 - [ ] 8.2
 - [ ] 19.2
 - [ ] 22.2
+- [ ] 25.1
+- [ ] 25.2
 
 ---
 

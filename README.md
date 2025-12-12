@@ -101,3 +101,11 @@ First part is pretty straightforward BFS. Another tricky part 2. Seems we may wa
 **Part one**: find the minimum number of button presses required to reach a target state (such as "..#."), where each press toggles certain lights.
 
 **Part two**: find the minimum number of button presses required to reach a target state (such as "3,5,4,7"), where each press increments certain registers.
+
+## --- Day 11: Reactor ---
+
+Another tricky part two. Nice usage of [topological sort](https://en.wikipedia.org/wiki/Topological_sorting) to make a dynamic programming approach feasible.
+
+**Part one**: find the number of paths between two nodes in a directed acyclic graph.
+
+**Part two**: find the number of paths between three nodes in a (considerably larger) directed acyclic graph.

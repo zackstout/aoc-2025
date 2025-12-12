@@ -1,5 +1,5 @@
 const { bfs } = require("../../../algorithms/bfs.js");
-const { kruskalMST } = require("../../../algorithms/spanningTree.js");
+const { kruskalMST } = require("../../../algorithms/kruskalMST.js");
 const { getPermutations } = require("../../../algorithms/permutations.js");
 const { input } = require("./input.js");
 

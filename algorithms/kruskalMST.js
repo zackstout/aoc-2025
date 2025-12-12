@@ -1,8 +1,6 @@
 // Kruskal's -- greedy, continuously take lowest weight edge that does not produce cycle.
 // Prim's -- greedy, continuously take lowest weight edge that connects to current tree.
 
-// Also union-find??
-
 // KRUSKALS (does use Union find):
 // It sorts the edges in ascending order of weight and adds them one by one to the Minimum Spanning Tree (MST), ensuring that no cycles are formed.
 // To efficiently check if adding an edge would form a cycle, it uses the union-find data structure with path compression and union by rank.
@@ -11,47 +9,7 @@
 // It grows the MST by starting from an arbitrary vertex and repeatedly adding the smallest edge that connects a new vertex to the MST.
 // Instead of union-find, Prim’s algorithm typically uses a priority queue (min-heap) to efficiently find the next smallest edge.
 
-class UnionFind {
-  constructor(size) {
-    this.parent = new Array(size).fill(0).map((_, index) => index);
-
-    // Prevents dumb choices during union -- allows us to constrain tree height
-    this.rank = new Array(size).fill(1);
-  }
-
-  find(node) {
-    if (this.parent[node] !== node) {
-      this.parent[node] = this.find(this.parent[node]); // Path compression
-    }
-    return this.parent[node];
-  }
-
-  union(node1, node2) {
-    let root1 = this.find(node1);
-    let root2 = this.find(node2);
-
-    if (root1 !== root2) {
-      // if (this.rank[root1] > this.rank[root2]) {
-      //   this.parent[root2] = root1;
-      //   this.rank[root1] += this.rank[root2];
-      // } else {
-      //   this.parent[root1] = root2;
-      //   this.rank[root2] += this.rank[root1];
-      // }
-
-      if (this.rank[root1] > this.rank[root2]) {
-        this.parent[root2] = root1;
-        // this.rank[root1] += this.rank[root2];
-      } else if (this.rank[root1] < this.rank[root2]) {
-        this.parent[root1] = root2;
-        // this.rank[root2] += this.rank[root1];
-      } else {
-        this.parent[root2] = root1;
-        this.rank[root1]++;
-      }
-    }
-  }
-}
+const { UnionFind } = require("./unionFind.js");
 
 function kruskalMST(edges, numNodes) {
   edges.sort((a, b) => a[2] - b[2]); // Sort edges by weight
@@ -83,4 +41,4 @@ function kruskalMST(edges, numNodes) {
 
 // example();
 
-module.exports = { kruskalMST, UnionFind };
+module.exports = { kruskalMST };

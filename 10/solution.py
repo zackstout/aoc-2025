@@ -49,12 +49,13 @@ def solve(data):
         # print(groups)
         # print(set_part)
 
+        # Represents what each button means: [3,5] means it increments the 4th and 6th registers.
         parsed_groups = []
         for g in groups:
             nums = g.strip("()").split(",")
             parsed_groups.append(tuple(int(n) for n in nums))
         
-        # parse set
+        # These are the target values we need each "register" to reach:
         values = [int(x) for x in set_part.strip("{}").split(",")]
 
         # print("parsed_groups",parsed_groups)
@@ -64,21 +65,17 @@ def solve(data):
         cols = len(parsed_groups)
         m = [[0] * cols for _ in range(rows)]
 
-        # Watch out, this is a reference!Q copy
-        # m = [[0] * cols] * rows   # WRONG!
-
-
-        # Populate the matrix so that each row represents a constraint: a combination of button presses
+        # Populate the matrix so that each row represents a constraint: like [0,0,0,1,0,1], this means that 4th and 6th registers are incremented
         for i, grp in enumerate(parsed_groups):
             for x in grp:
                 # print(x)
                 m[x][i] = 1
-        # Note you need range(len(...)) to make iteration work
-        # m = [[1 for i in range(len(parsed_groups)) if i > 2 else 0] for j in range(len(values))]
-
+       
         # e.g. {indices: [1, 5], value: 10}
         constraints = []
 
+        # rows look like e.g. [0,0,0,1,0,1] -- they track which unknown variables are being summed
+        # so now we convert into list of indices of the unknown variables that are summed, in this "equation"
         for r,row in enumerate(m):
             c = []
             for i,x in enumerate(row):
@@ -88,8 +85,10 @@ def solve(data):
 
         # print(constraints)
 
-        minCost = solve_minimize_cost(len(parsed_groups), constraints)
-
+        numUnknowns = len(parsed_groups)
+        minCost = solve_minimize_cost(numUnknowns, constraints)
+        
+        # minCost is a tuple with first value the combo of button pushes, and second value the total cost (their sum)
         total += minCost[1]
         # print(minCost[1])
 

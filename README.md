@@ -98,9 +98,9 @@ First one where part 2 trips us up. Seems we need [coordinate compression](https
 
 First part is pretty straightforward BFS. Another tricky part 2. Seems we may want an [integer linear solver](https://en.wikipedia.org/wiki/Integer_programming) of some kind.
 
-Let's try using Python so we can easily access Z3. Use `python3` to run it.
+Let's try using Python so we can easily access [Z3](https://ericpony.github.io/z3py-tutorial/guide-examples.htm).
 
-Or actually, use `source .venv/bin/activate` to run virtual environment, then we can use regular `pip` and `python` commands.
+Yep, we got it, phew.
 
 **Part one**: find the minimum number of button presses required to reach a target state (such as "..#."), where each press toggles certain lights.
 

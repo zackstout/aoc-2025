@@ -1,7 +1,7 @@
 from z3 import Int, Solver, sat, Or, Optimize, Sum
-import re
 
 def solve_minimize_cost(n, constraints):
+    # n is the number of unknown variables
     xs = [Int(f"x_{i}") for i in range(n)]
 
     opt = Optimize()
@@ -10,7 +10,7 @@ def solve_minimize_cost(n, constraints):
     for x in xs:
         opt.add(x >= 0)
 
-    # Suppose constraints is something like: [{"indices": [1, 4], "value": 10}, ...]
+    # Constraints looks like: [{"indices": [1, 4], "value": 10}, ...]
     for c in constraints:
         idxs = c["indices"]
         subset = [xs[i] for i in idxs]
@@ -27,7 +27,7 @@ def solve_minimize_cost(n, constraints):
     else:
         return None, None
 
-print("Hello, world!")
+# print("Hello, world!")
 
 ex = """[.##.] (3) (1,3) (2) (2,3) (0,2) (0,1) {3,5,4,7}
 [...#.] (0,2,3,4) (2,3) (0,4) (0,1,2) (1,2,3,4) {7,5,12,7,2}

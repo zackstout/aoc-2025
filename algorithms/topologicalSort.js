@@ -1,5 +1,6 @@
-// Can just use DFS. Mark as visited, recurse through adjacent, and then add to stack. Reverse stack to get sorted order.
+// Mental model: “I need a topological order because I need to guarantee that all prerequisites of a state come before it.”
 
+// Can just use DFS. Mark as visited, recurse through adjacent, and then add to stack. Reverse stack to get sorted order.
 // This is Kahn's algorithm
 
 function topologicalSort(graph) {
@@ -64,3 +65,13 @@ function example() {
 // example();
 
 module.exports = { topologicalSort };
+
+/**
+ * Every DP is solving a DAG, whether you see it or not.
+ * Whenever the DAG is non-linear, you topologically sort it.
+ * Whenever the DAG is naturally linear, the loop order is the topo order.
+ */
+
+/**
+ * A postorder traversal is literally a topological sort of a tree.
+ */

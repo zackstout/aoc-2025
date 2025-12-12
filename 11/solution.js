@@ -27,7 +27,9 @@ const partOne = (begin = "you", goal = "out", data = "") => {
 
   //   let total = 0;
 
-  function dfs(pos, steps, memo = {}) {
+  // NOTE: we initially solved this with "total" counter and without any memoization.
+  // Was attempting to optimize for part two but we found a better way.
+  function dfs(pos, memo = {}) {
     // if (memo.has(pos)) return;
     // memo.add(pos);
 
@@ -44,7 +46,7 @@ const partOne = (begin = "you", goal = "out", data = "") => {
     let sum = 0;
 
     for (const n of atlas[pos]) {
-      sum += dfs(n, steps + 1, memo);
+      sum += dfs(n, memo);
     }
 
     memo[pos] = sum;
@@ -82,10 +84,6 @@ const partTwo = () => {
   });
 
   graph["out"] = [];
-
-  // return graph;
-
-  //   for (const n in graph) console.log(graph[n]);
 
   // Takes about 20ms on real input
   const sorted = topologicalSort(graph);

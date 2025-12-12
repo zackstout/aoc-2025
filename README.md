@@ -38,7 +38,7 @@ A nice recursive problem. Find the largest n-digit number by selecting digits (i
 
 ## --- Day 4: Printing Department ---
 
-Hoo hoo, our first grid simulation! Was a bit rusty, ran into issue with trying to set the character in a string, and some confusion about whether neighbors were just coordinates or held the value as well. Ultimately pretty straightforward.
+Hoo hoo, our first grid simulation! (Essentially 2d [cellular automata](https://en.wikipedia.org/wiki/Cellular_automaton).) Was a bit rusty, ran into issue with trying to set the character in a string, and some confusion about whether neighbors were just coordinates or held the value as well. Ultimately pretty straightforward.
 
 **Part one**: Count how many items in a grid satisfy a certain neighbor-based condition (which will allow them to be culled).
 
@@ -74,7 +74,7 @@ First DFS problem!
 
 ## --- Day 8: Playground ---
 
-A little Union-Find action: keeping track of cycles in a graph as new edges are added.
+A little [Union-Find](https://en.wikipedia.org/wiki/Disjoint-set_data_structure) action: keeping track of cycles in a graph as new edges are added.
 
 **Part one**: find the largest three cycles after a certain number of iterations (not counting "useless" ones).
 
@@ -88,7 +88,7 @@ A little Union-Find action: keeping track of cycles in a graph as new edges are 
 
 ## --- Day 9: Movie Theater ---
 
-First one where part 2 trips us up. Seems we need coordinate compression of some kind.
+First one where part 2 trips us up. Seems we need [coordinate compression](https://stackoverflow.com/questions/29528934/coordinate-compression) of some kind.
 
 **Part one**: find the largest rectangle that can be formed from pairs of a list of coordinates.
 
@@ -97,6 +97,10 @@ First one where part 2 trips us up. Seems we need coordinate compression of some
 ## --- Day 10: Factory ---
 
 First part is pretty straightforward BFS. Another tricky part 2. Seems we may want an [integer linear solver](https://en.wikipedia.org/wiki/Integer_programming) of some kind.
+
+Let's try using Python so we can easily access Z3. Use `python3` to run it.
+
+Or actually, use `source .venv/bin/activate` to run virtual environment, then we can use regular `pip` and `python` commands.
 
 **Part one**: find the minimum number of button presses required to reach a target state (such as "..#."), where each press toggles certain lights.
 

@@ -22,6 +22,31 @@ function bfs(start, isGoal, getNeighbors) {
   return null; // Goal not found
 }
 
+// This version accepts a getKey method so that we don't have to rely on nodes being stored as strings
+function bfs2(start, isGoal, getNeighbors, getKey) {
+  const queue = [start];
+  const visited = new Set();
+  visited.add(getKey(start));
+
+  while (queue.length > 0) {
+    const node = queue.shift();
+
+    if (isGoal(node)) {
+      return node; // Goal found
+    }
+
+    // NOTE: We could pass in separate validateNode function, or just handle that inside getNeighbors
+    for (const neighbor of getNeighbors(node)) {
+      if (!visited.has(getKey(neighbor))) {
+        visited.add(getKey(neighbor));
+        queue.push(neighbor);
+      }
+    }
+  }
+
+  return null; // Goal not found
+}
+
 // Example usage:
 function example() {
   function isGoal(node) {
@@ -46,4 +71,4 @@ function example() {
 
 // example();
 
-module.exports = { bfs };
+module.exports = { bfs, bfs2 };

@@ -102,6 +102,10 @@ Let's try using Python so we can easily access [Z3](https://ericpony.github.io/z
 
 Yep, we got it, phew.
 
+Ah, but we way overcomplicated it with the matrix representation. Makes sense because that's how we wrote it in notes.
+
+But yeah we can build the `constraints` much more directly from the data.
+
 **Part one**: find the minimum number of button presses required to reach a target state (such as "..#."), where each press toggles certain lights.
 
 **Part two**: find the minimum number of button presses required to reach a target state (such as "3,5,4,7"), where each press increments certain registers.
@@ -113,3 +117,8 @@ Another tricky part two. Nice usage of [topological sort](https://en.wikipedia.o
 **Part one**: find the number of paths between two nodes in a directed acyclic graph.
 
 **Part two**: find the number of paths between three nodes in a (considerably larger) directed acyclic graph.
+
+## Going Forward
+
+- We should update this to use Typescript
+- We should go back through old problems and see how much mileage we can get out of `algorithms` we've added.

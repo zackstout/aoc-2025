@@ -21,8 +21,8 @@ I'll leave out the Day 25's, since they tend to be checks for whether you have a
 - [ ] 17.1
 - [ ] 17.2
 - [ ] 18.2
-- [ ] 19.2
-- [ ] 20.2
+- [x] 19.2
+- [x] 20.2
 - [ ] 21.2
 - [ ] 22.1
 - [ ] 22.2

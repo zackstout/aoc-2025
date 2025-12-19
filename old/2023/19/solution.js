@@ -114,12 +114,13 @@ const solution = () => {
     }
 
     tgts.forEach((tgt) => {
+      // Since this is an "if/else if" structure, we need to invert all previously accumulated conditions from this round
       const newConditions = [...conditions, ...conds.map(invert)];
       if (tgt.cond) {
         newConditions.push(tgt.cond);
       }
       dfs(tgt.val, newConditions);
-
+      // Add to list of conditions to be inverted for future branches in this set
       if (tgt.cond) {
         conds.push(tgt.cond);
       }

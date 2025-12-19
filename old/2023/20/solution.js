@@ -75,16 +75,19 @@ const solution = () => {
   outer: while (true) {
     const queue = [{ val: 0, target: "broadcaster", from: "button" }];
 
-    // This will break whenever we reach the "end".
-    // The "end" will require pushing the button again.
+    // This will break whenever we reach the end (processed all pulses).
+    // The end will require pushing the button again.
     while (queue.length > 0) {
       const { val, target, from } = queue.shift();
       if (val === 0) {
-        if (target === "rx") {
-          break outer;
-        }
+        // Not actually used, since it would take a huge amount of time to reach this point in the simulation:
+        // if (target === "rx") {
+        //   break outer;
+        // }
         low++;
       } else {
+        // Detect when each of the inputs to the "lx" accumulator (which outputs to "rx") sends out a high pulse.
+        // This will allow us to find LCM of cycle lengths:
         if (Object.keys(desired).includes(from)) {
           desired[from] = buttonPresses;
           console.log("Updating desired", desired, from);

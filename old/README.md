@@ -18,8 +18,8 @@ I'll leave out the Day 25's, since they tend to be checks for whether you have a
 
 - [ ] 10.2
 - [ ] 12.2
-- [ ] 17.1
-- [ ] 17.2
+- [x] 17.1
+- [x] 17.2
 - [ ] 18.2
 - [x] 19.2
 - [x] 20.2
@@ -169,7 +169,12 @@ Unfold the spring records to determine how many possible combinations would be v
 
 ### --- Day 17: Clumsy Crucible ---
 
+Part one: ⭐
+Part two: ⭐
+
 Minimize sum of values in a grid-based path, with constraint that you can only go 3 in a direction before turning.
+
+Ah, slick application of Dijkstra's, using a Minimum Priority Queue.
 
 ### --- Day 18: Lavaduct Lagoon ---
 
@@ -177,11 +182,23 @@ A dig plan (UDLR) with huge numbers, find the enclosed area.
 
 ### --- Day 19: Aplenty ---
 
+Part two: ⭐
+
 How many of huge set of possible combinations get validated by a simulated "workflow" process.
+
+The "workflows" involve checking whether one of a set of variables is greater than or less than (or equal to) some value.
+
+Nice, we got there by using DFS to find all the possible collections of conditions that can lead to an acceptance. Then we just needed a helper function to compute the size of each collection of conditions -- the product of the sizes of the allowed interval for each variable.
 
 ### --- Day 20: Pulse Propagation ---
 
+Part two: ⭐
+
 Complex signal network simulation: fewest number of steps to achieve a desired outcome.
+
+The key insight is that this outcomes occurs when a number of independent cycles align with one another, so we need the LCM of their lengths.
+
+Otherwise a fairly straightforward event processing simulation, using a queue.
 
 ### --- Day 21: Step Counter ---
 

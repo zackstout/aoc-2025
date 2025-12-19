@@ -96,8 +96,8 @@ const graph = new Map([
 
 const { distances, previous } = dijkstra(graph, "A");
 
-console.log("Distance A→C:", distances.get("C")); // 3
-console.log("Path A→C:", reconstructPath(previous, "C")); // ['A', 'B', 'C']
+// console.log("Distance A→C:", distances.get("C")); // 3
+// console.log("Path A→C:", reconstructPath(previous, "C")); // ['A', 'B', 'C']
 
 module.exports = { dijkstra, reconstructPath };
 

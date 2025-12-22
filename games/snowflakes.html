@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snow</title>
+
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      svg {
+        height: 80vh;
+        width: 80vh;
+        background: lightblue;
+      }
+
+      path {
+        stroke-width: 0.04rem;
+        stroke: white;
+        fill: none;
+      }
+
+      button {
+        margin-right: 2rem;
+        padding: 0.5rem 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <button>Go</button>
+    <svg viewBox="0 0 100 100" height="100" width="100"></svg>
+
+    <script>
+      const SVG_NS = "http://www.w3.org/2000/svg";
+      const svg = document.querySelector("svg");
+
+      const run = () => {
+        // const hexPath = hex(40);
+        // const p = document.createElementNS(SVG_NS, "path");
+        // p.setAttribute("d", hexPath);
+        // svg.appendChild(p);
+
+        const flake = makeFlake(3);
+        drawFlake(flake);
+      };
+
+      document.querySelector("button").addEventListener("click", run);
+
+      function drawFlake(flake) {
+        svg.innerHTML = "";
+        // each Line in flake is going to be {length, angle, start}
+        for (const line of flake) {
+          const { start, angle, length, level } = line;
+          const end = {
+            x: start.x + Math.cos(angle) * length,
+            y: start.y + Math.sin(angle) * length,
+          };
+          const d = getPath([start, end]);
+          const p = document.createElementNS(SVG_NS, "path");
+          p.setAttribute("d", d);
+
+          // Ah right, not exactly working as intended,
+          // since we redraw the base layers every time.
+          p.setAttribute("opacity", 1 / level);
+          svg.appendChild(p);
+        }
+      }
+
+      /**
+       * Hmm.. I think we want to store each Line as...
+       * - length
+       * - start
+       * - and angle
+       *
+       * Then we can find end, interpolate from start to end to find any midpoint..
+       * And branch out like a BFS level by level... or generation by generation..
+       */
+      function makeFlake(iterations = 1) {
+        let lines = [];
+        const r = 30;
+        const RADIAL_SYMMETRY = Math.floor(Math.random() * 7 + 3);
+        const ctr = { x: 50, y: 50 };
+        for (let i = 0; i < RADIAL_SYMMETRY; i++) {
+          const ang = (Math.PI * 2 * i) / RADIAL_SYMMETRY;
+          //   const x = Math.cos(ang) * r + ctr.x;
+          //   const y = Math.sin(ang) * r + ctr.y;
+          //   lines.push([ctr, { x, y }]);
+
+          lines.push({ start: ctr, length: r, angle: ang, level: 0 });
+        }
+        let times = 0;
+
+        // const breakpoint = Math.random();
+        // const breakangle = (Math.random() * Math.PI) / 2;
+
+        // const breakpoint = 0.6;
+        // const breakangle = Math.PI / 4;
+
+        while (times < iterations) {
+          const newLines = [];
+
+          const breakpoint = Math.random();
+          const breakangle = (Math.random() * Math.PI) / 2;
+          const lengthFactor = Math.random();
+
+          lines.forEach((line) => {
+            // Break it up into "growing" segments and push new lines onto newLines
+            const { start, length, angle, level } = line;
+            const end = {
+              x: start.x + Math.cos(angle) * length,
+              y: start.y + Math.sin(angle) * length,
+            };
+            const midpoint = {
+              x: start.x + (end.x - start.x) * breakpoint,
+              y: start.y + (end.y - start.y) * breakpoint,
+            };
+            for (let i = -1; i <= 1; i++) {
+              newLines.push({
+                // length: length * (1 - breakpoint),
+                length: length * lengthFactor,
+                angle: angle + i * breakangle,
+                start: midpoint,
+                level: level + 1,
+              });
+            }
+          });
+
+          lines = [...lines, ...newLines];
+          times++;
+        }
+        return lines;
+      }
+
+      function getPath(pts) {
+        const start = pts[0];
+        let path = `M${start.x} ${start.y}`;
+        for (const pt of pts.slice(1)) {
+          path += ` L${pt.x} ${pt.y}`;
+        }
+        path += ` Z`;
+        return path;
+      }
+
+      //   function line(p1, p2) {
+      //     return getPath([p1, p2]);
+      //   }
+
+      function hex(r) {
+        const pts = [];
+        const ctr = { x: 50, y: 50 };
+        for (let i = 0; i < 6; i++) {
+          const ang = (Math.PI * 2 * i) / 6;
+          const x = Math.cos(ang) * r + ctr.x;
+          const y = Math.sin(ang) * r + ctr.y;
+          pts.push({ x, y });
+        }
+        return getPath(pts);
+      }
+
+      window.onload = run;
+    </script>
+  </body>
+</html>

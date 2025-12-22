@@ -1,7 +1,18 @@
 const { input } = require("./input.js");
+const { bfs } = require("../../../algorithms/bfs.js");
 
-const solution = () => {
-  const lines = input.split("\n").map((line) => line.split(/\s+/));
+const ex = `/dev/grid/node-x0-y0   10T    8T     2T   80%
+/dev/grid/node-x0-y1   11T    6T     5T   54%
+/dev/grid/node-x0-y2   32T   28T     4T   87%
+/dev/grid/node-x1-y0    9T    7T     2T   77%
+/dev/grid/node-x1-y1    8T    0T     8T    0%
+/dev/grid/node-x1-y2   11T    7T     4T   63%
+/dev/grid/node-x2-y0   10T    6T     4T   60%
+/dev/grid/node-x2-y1    9T    8T     1T   88%
+/dev/grid/node-x2-y2    9T    6T     3T   66%`;
+
+const parse = (str) => {
+  const lines = str.split("\n").map((line) => line.split(/\s+/));
   let maxX = 0;
   let maxY = 0;
   const data = lines.map((line) => {
@@ -24,37 +35,69 @@ const solution = () => {
   data.forEach((d) => {
     nodeMap[`${d.x},${d.y}`] = d;
   });
+  // console.log(maxX, maxY);
 
-  let viableOptions = 0;
-
-  console.log(maxX, maxY);
-
-  console.log(nodeMap["33,0"]);
-
-  for (const node of data) {
-    const nbrs = [
-      [0, 1],
-      [0, -1],
-      [1, 0],
-      [-1, 0],
-    ]
-      .map((d) => ({ x: node.x + d[0], y: node.y + d[1] }))
-      .filter((pt) => pt.x >= 0 && pt.y >= 0 && pt.x <= maxX && pt.y <= maxY)
-      .map((p) => nodeMap[`${p.x},${p.y}`])
-      .filter((n) => {
-        return node.available >= n.used && n.used >= 0;
-      });
-
-    if (nbrs.length && node.used) {
-      console.log(node, "can dump into", nbrs);
-      viableOptions += nbrs.length;
-    }
-  }
-
-  return viableOptions;
-
-  return data.slice(0, 5);
+  return { nodes: data, nodeMap, maxX, maxY };
 };
+
+const solution = () => {
+  const { nodeMap, nodes, maxX, maxY } = parse(ex);
+
+  const key = Object.keys(nodeMap).find((key) => nodeMap[key].used === 0);
+  const maxAllowed = nodeMap[key].available;
+
+  Object.keys(nodeMap).forEach((key) => {
+    const node = nodeMap[key];
+    node.isWall = node.used > maxAllowed;
+  });
+
+  const start = `${key};0`;
+  const goal = `${maxX},0`;
+
+  // return { start, goal };
+
+  const isGoal = (data) => {
+    const [pt, steps] = data.split(";");
+    return pt === goal;
+  };
+  const isStart = (data) => {
+    const [pt, steps] = data.split(";");
+    return pt === "0,0";
+  };
+
+  const getNeighbors = (data) => {
+    const [pt, steps] = data.split(";");
+    const [x, y] = pt.split(",").map(Number);
+    // console.log("nbrs", x, y, steps);
+    return (
+      [
+        [1, 0],
+        [0, 1],
+        [-1, 0],
+        [0, -1],
+      ]
+        .map((d) => {
+          return { x: x + d[0], y: y + d[1] };
+        })
+        // Oh wow need <= not < here.....
+        .filter((p) => p.x >= 0 && p.y >= 0 && p.x <= maxX && p.y <= maxY)
+        .filter((p) => !nodeMap[`${p.x},${p.y}`].isWall)
+        .map((p) => `${p.x},${p.y};${Number(steps) + 1}`)
+    );
+  };
+  const result = bfs(start, isGoal, getNeighbors);
+
+  const res2 = bfs(`${goal};0`, isStart, getNeighbors);
+
+  // return { result, res2 };
+
+  return Number(result.split(";")[1]) + maxX + 3;
+  // return nodeMap["0,2"];
+};
+
+// 106 is too low...so is 109. Ugh.
+// I mean yeah we're hacking it... assuming num steps back to home is same always....
+// The better way would probably be, do another bfs back from end to start, with this considered a wall....
 
 console.time("solve");
 console.log(solution());
